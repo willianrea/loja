@@ -1,17 +1,15 @@
-<?php include 'cabecalho.php';?>
-<?php
-function insereProduto ($conexao, $nome, $preco)	
-{
-	$query = "insert into loja.produtos (nome, preco) values ('{$nome}', {$preco})";
-	return mysqli_query($conexao,$query);	
-}
+<?php include 'cabecalho.php';
+	  include('conecta.php');
+	  include('banco-produto.php');
 
-$nome = $_GET["nome"];
-$preco= $_GET["preco"];
-$conexao = mysqli_connect('localhost', 'root', '', 'loja');
+
+
+$nome = $_POST["nome"];
+$preco= $_POST["preco"];
+$descricao= $_POST["descricao"];
 	
 	
-if (insereProduto ($conexao, $nome, $preco) and ($nome != '')){
+if (insereProduto ($conexao, $nome, $preco, $descricao) and ($nome != '') && ($descricao != '')){
 	?>
 	<p class="text-success">
 		Produto <?= $nome; ?>, adicionado com sucesso!
